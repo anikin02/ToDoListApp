@@ -1,5 +1,5 @@
 //
-//  ToDoViewController.swift
+//  ToDoListViewController.swift
 //  ToDoListApp
 //
 //  Created by Данил Аникин on 17.11.2024.
@@ -59,6 +59,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   
   
   // MARK: - Footer
+  
   private func setupFooter() {
     footerView.backgroundColor = .systemGroupedBackground
     footerView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +97,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+    tableView.register(ToDoTableViewCell.self, forCellReuseIdentifier: "Cell")
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
   }
@@ -106,10 +107,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-    let todo = viewModel.todos[indexPath.row]
-    cell.textLabel?.text = todo.todo
-    cell.detailTextLabel?.text = todo.descripton
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ToDoTableViewCell else {
+      return UITableViewCell()
+    }
+    cell.configure(with: viewModel.todos[indexPath.row])
     return cell
   }
 }
