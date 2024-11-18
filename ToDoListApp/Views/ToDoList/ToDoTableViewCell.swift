@@ -69,7 +69,7 @@ class ToDoTableViewCell: UITableViewCell {
   func configure(with todo: ToDoItem) {
     self.todo = todo
     titleLabel.text = todo.todo
-    descriptionLabel.text = todo.descripton
+    descriptionLabel.text = todo.description
     dateLabel.text = todo.date
     updateAppearance()
   }

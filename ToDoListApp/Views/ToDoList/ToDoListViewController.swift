@@ -16,6 +16,15 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   let footerLabel = UILabel()
   let addToDoButton = UIButton(type: .system)
   
+  override func viewWillAppear(_ animated: Bool){
+    super.viewWillAppear(animated)
+    
+    viewModel.loadTodos()
+    
+    self.navigationController?.navigationBar.prefersLargeTitles = true
+    self.title = "Задачи"
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
@@ -24,17 +33,14 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
       self?.tableView.reloadData()
       self?.updateFooter()
     }
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    viewModel.loadTodos()
+    
+    let backButton = UIBarButtonItem()
+    backButton.title = "Назад"
+    backButton.tintColor = .systemYellow
+    navigationItem.backBarButtonItem = backButton
   }
   
   private func setupView() {
-    // MARK: Title
-    self.title = "Задачи"
-    navigationController?.navigationBar.prefersLargeTitles = true
-    
     setupTableView()
     setupFooter()
     
@@ -67,7 +73,6 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   
   private func setupFooter() {
     // FooterView
-    footerView.backgroundColor = .systemGroupedBackground
     footerView.backgroundColor = .systemGroupedBackground
     footerView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(footerView)

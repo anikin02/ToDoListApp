@@ -10,14 +10,14 @@ import Foundation
 class ToDoItem {
   let id: Int
   var todo: String
-  var descripton: String
+  var description: String
   var completed: Bool
   var date: String
   
-  init(id: Int, todo: String, descripton: String = "", completed: Bool = false, date: String? = nil) {
+  init(id: Int, todo: String, description: String = "", completed: Bool = false, date: String? = nil) {
     self.id = id
     self.todo = todo
-    self.descripton = descripton
+    self.description = description
     self.completed = completed
     
     if let date = date {
