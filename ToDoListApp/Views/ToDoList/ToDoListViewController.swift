@@ -14,6 +14,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   let footerView = UIView()
   let tableView = UITableView()
   let footerLabel = UILabel()
+  let addToDoButton = UIButton(type: .system)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,7 +54,11 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
       
       // FooterLabel
       footerLabel.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-      footerLabel.centerYAnchor.constraint(equalTo: footerView.centerYAnchor, constant: -17)
+      footerLabel.centerYAnchor.constraint(equalTo: footerView.centerYAnchor, constant: -17),
+      
+      // AddToDoButton
+      addToDoButton.centerYAnchor.constraint(equalTo: footerLabel.centerYAnchor),
+      addToDoButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -20)
     ])
   }
   
@@ -61,19 +66,29 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   // MARK: - Footer
   
   private func setupFooter() {
+    // FooterView
+    footerView.backgroundColor = .systemGroupedBackground
     footerView.backgroundColor = .systemGroupedBackground
     footerView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(footerView)
     
-    footerView.backgroundColor = .systemGroupedBackground
-    
+    // FooterLabel
     footerLabel.frame = footerView.bounds
     footerLabel.textAlignment = .center
     footerLabel.font = UIFont.systemFont(ofSize: 14)
     footerLabel.textColor = .darkGray
-    
     footerLabel.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(footerView)
     footerView.addSubview(footerLabel)
+    
+    //AddToDoButton
+    addToDoButton.frame = footerView.bounds
+    addToDoButton.tintColor = .systemYellow
+    let image = UIImage(systemName: "square.and.pencil")?
+      .withConfiguration(UIImage.SymbolConfiguration(pointSize: 22, weight: .medium))
+    addToDoButton.setImage(image, for: .normal)
+    addToDoButton.addTarget(self, action: #selector(openAddToDo), for: .touchUpInside)
+    addToDoButton.translatesAutoresizingMaskIntoConstraints = false
+    footerView.addSubview(addToDoButton)
   }
   
   private func updateFooter() {
@@ -90,6 +105,11 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     footerLabel.text = footerText
+  }
+  
+  @objc func openAddToDo() {
+    let addToDoViewController = ToDoDetailsViewController()
+    navigationController?.pushViewController(addToDoViewController, animated: true)
   }
   
   // MARK: - TableView

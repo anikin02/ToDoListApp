@@ -97,7 +97,7 @@ class ToDoTableViewCell: UITableViewCell {
     descriptionLabel.textColor = todo?.completed == true ? .systemGray : .label
   }
   
-  // MARK: - Обработчик кнопки
+  // MARK: - Button???
   @objc private func toggleCompleted() {
     self.todo?.completed.toggle()
     updateAppearance()

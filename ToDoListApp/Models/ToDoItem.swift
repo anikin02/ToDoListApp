@@ -26,8 +26,8 @@ class ToDoItem {
       let currentDate = Date()
 
       let formatter = DateFormatter()
-      formatter.dateFormat = "MM/dd/yy" // Формат для получения 09/10/24
-      formatter.locale = Locale(identifier: "en_US_POSIX") // Гарантирует стабильный формат
+      formatter.dateFormat = "MM/dd/yy"
+      formatter.locale = Locale(identifier: "en_US_POSIX")
 
       let formattedDate = formatter.string(from: currentDate)
       self.date = formattedDate
