@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ToDoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ToDoDetailsViewControllerDelegate {
   
   let viewModel = ToDoListViewModel()
   
@@ -114,7 +114,12 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
   
   @objc func openAddToDo() {
     let addToDoViewController = ToDoDetailsViewController()
+    addToDoViewController.delegate = self
     navigationController?.pushViewController(addToDoViewController, animated: true)
+  }
+  
+  func didAddToDoItem(todo: ToDoItem) {
+    viewModel.addTodo(todo: todo)
   }
   
   // MARK: - TableView

@@ -28,4 +28,10 @@ class ToDoStorage {
       todos.remove(at: index)
     }
   }
+  
+  func changeTodo(oldTodo: ToDoItem, newTodo: ToDoItem){
+    if let index = todos.firstIndex(where: {$0 === oldTodo}) {
+      todos[index] = newTodo
+    }
+  }
 }

@@ -12,6 +12,7 @@ class ToDoDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
   let dateLabel = UILabel()
   let descriptionView = UITextView()
   
+  weak var delegate: ToDoDetailsViewControllerDelegate?
   var toDoItem: ToDoItem?
   
   override func viewDidLoad() {
@@ -22,6 +23,15 @@ class ToDoDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
   
   override func viewDidAppear(_ animated: Bool) {
     self.navigationController?.navigationBar.prefersLargeTitles = false
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    if inputTittleField.text != "" {
+      descriptionView.text = ""
+      saveToDo()
+    }
   }
   
   func setupView() {
@@ -79,12 +89,6 @@ class ToDoDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
   }
   
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-//    if textField.text == "Ваша задача" {
-//      textField.text = ""
-//    }
-  }
-  
   // MARK: - TextView (Placeholder)
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.text == "Добавьте описание к задаче" {
@@ -99,4 +103,14 @@ class ToDoDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
       textView.textColor = .systemGray
     }
   }
+  
+  func saveToDo() {
+    let todo = ToDoItem(id: 6, todo: inputTittleField.text ?? "", description: descriptionView.text ?? "")
+    delegate?.didAddToDoItem(todo: todo)
+    navigationController?.popViewController(animated: true)
+  }
+}
+
+protocol ToDoDetailsViewControllerDelegate: AnyObject {
+  func didAddToDoItem(todo: ToDoItem)
 }
