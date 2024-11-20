@@ -106,11 +106,16 @@ class ToDoDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
   
   func saveToDo() {
     let todo = ToDoItem(id: 6, todo: inputTittleField.text ?? "", description: descriptionView.text ?? "")
-    delegate?.didAddToDoItem(todo: todo)
+    if toDoItem == nil {
+      delegate?.didAddToDoItem(todo: todo)
+    } else {
+      delegate?.didChangeToDoItem(oldTodo: toDoItem!, newTodo: todo)
+    }
     navigationController?.popViewController(animated: true)
   }
 }
 
 protocol ToDoDetailsViewControllerDelegate: AnyObject {
   func didAddToDoItem(todo: ToDoItem)
+  func didChangeToDoItem(oldTodo: ToDoItem, newTodo: ToDoItem)
 }

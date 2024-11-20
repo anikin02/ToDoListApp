@@ -122,6 +122,10 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     viewModel.addTodo(todo: todo)
   }
   
+  func didChangeToDoItem(oldTodo: ToDoItem, newTodo: ToDoItem) {
+    viewModel.changeTodo(oldTodo: oldTodo, newTodo: newTodo)
+  }
+  
   // MARK: - TableView
   
   private func setupTableView() {
@@ -142,6 +146,35 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     cell.configure(with: viewModel.todos[indexPath.row])
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions -> UIMenu? in
+      let todo = self.viewModel.todos[indexPath.row]
+      let changeAction = UIAction(title: "Редактировать",
+                                  image: UIImage(systemName: "square.and.pencil"),
+                                  identifier: nil,
+                                  discoverabilityTitle: nil) { action in
+        let addToDoViewController = ToDoDetailsViewController()
+        addToDoViewController.toDoItem = todo
+        addToDoViewController.delegate = self
+        self.navigationController?.pushViewController(addToDoViewController, animated: true)
+      }
+      let shareAction = UIAction(title: "Поделиться",
+                                  image: UIImage(systemName: "square.and.arrow.up"),
+                                  identifier: nil,
+                                  discoverabilityTitle: nil) { action in
+        UIPasteboard.general.string = todo.todo
+      }
+      let removeAction = UIAction(title: "Удалить",
+                                  image: UIImage(systemName: "trash"),
+                                  identifier: nil,
+                                  discoverabilityTitle: nil,
+                                  attributes: .destructive) { action in
+        self.viewModel.removeTodo(todo: todo)
+      }
+      return UIMenu(image: nil, identifier: nil, options: [], children: [changeAction, removeAction])
+    }
   }
 }
 
