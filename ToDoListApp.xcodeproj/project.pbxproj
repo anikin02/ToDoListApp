@@ -17,6 +17,7 @@
 		78E97AE52CE98C6C00A55FB4 /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E97AE42CE98C6C00A55FB4 /* ToDoListViewModel.swift */; };
 		78E97AE92CE9917100A55FB4 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E97AE82CE9917100A55FB4 /* ToDoTableViewCell.swift */; };
 		78E97AEC2CEAF19900A55FB4 /* ToDoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E97AEB2CEAF19900A55FB4 /* ToDoDetailsViewController.swift */; };
+		78E97AEE2CEDFB1700A55FB4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E97AED2CEDFB1700A55FB4 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		78E97AE42CE98C6C00A55FB4 /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
 		78E97AE82CE9917100A55FB4 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		78E97AEB2CEAF19900A55FB4 /* ToDoDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDetailsViewController.swift; sourceTree = "<group>"; };
+		78E97AED2CEDFB1700A55FB4 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		78E97ADC2CE98AFA00A55FB4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				78E97AED2CEDFB1700A55FB4 /* APIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				78E97AE52CE98C6C00A55FB4 /* ToDoListViewModel.swift in Sources */,
 				78E97AE32CE98BEF00A55FB4 /* ToDoStorage.swift in Sources */,
 				78E97AE92CE9917100A55FB4 /* ToDoTableViewCell.swift in Sources */,
+				78E97AEE2CEDFB1700A55FB4 /* APIManager.swift in Sources */,
 				78E97AC92CE989FD00A55FB4 /* ToDoListViewController.swift in Sources */,
 				78E97AC52CE989FD00A55FB4 /* AppDelegate.swift in Sources */,
 				78E97AEC2CEAF19900A55FB4 /* ToDoDetailsViewController.swift in Sources */,

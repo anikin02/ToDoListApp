@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ToDoItem {
+struct ToDoItem: Decodable, Equatable {
   let id: Int
   var todo: String
   var description: String

@@ -20,6 +20,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
     super.viewWillAppear(animated)
     
     viewModel.loadTodos()
+    updateFooter()
     
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.title = "Задачи"
@@ -173,7 +174,7 @@ class ToDoListViewController: UIViewController, UITableViewDelegate, UITableView
                                   attributes: .destructive) { action in
         self.viewModel.removeTodo(todo: todo)
       }
-      return UIMenu(image: nil, identifier: nil, options: [], children: [changeAction, removeAction])
+      return UIMenu(image: nil, identifier: nil, options: [], children: [changeAction, shareAction, removeAction])
     }
   }
 }

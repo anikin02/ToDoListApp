@@ -16,7 +16,15 @@ class ToDoListViewModel {
   }
   
   func loadTodos() {
-    todos = ToDoStorage.shared.todos
+    APIManager.shared.getTodos() { data in
+      DispatchQueue.main.async {
+        for item in data.todos {
+          self.addTodo(todo: ToDoItem(id: item.id, todo: item.todo, completed: item.completed))
+        }
+        
+        self.todos = ToDoStorage.shared.todos
+      }
+    }
   }
   
   func addTodo(todo: ToDoItem) {
